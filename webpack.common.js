@@ -10,4 +10,13 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true, // Ensures the output directory is cleaned before each build
   },
+  module: {
+    rules: [
+      {
+        // css files
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
 };
