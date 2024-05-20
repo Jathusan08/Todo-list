@@ -1,10 +1,20 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
     // Multiple entry points for javascript file to be bundled
     app: "./src/app.js",
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      filename: "index.html",
+      inject: "head", // body or head
+      scriptLoading: "defer",
+    }),
+  ],
+
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
