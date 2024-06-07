@@ -3,3 +3,342 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: auto;
+  height: 100%;
+  background-color: #060b19;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  background-color: #060b19;
+}
+
+.sidebar {
+  width: 100%;
+  /* border-radius: 0 5% 5% 0; */
+  height: 100%;
+
+  background-color: #131a29;
+
+  grid-column: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* justify-content: center; */
+  align-items: center;
+  padding-bottom: 35px;
+  gap: 25px;
+
+  /* overflow-y: auto; Allow vertical scrolling if necessary */
+}
+
+.sidebar > .header {
+  width: 100%;
+  height: 15%;
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 5px;
+}
+
+.sidebar > .header > .header-img {
+  background-image: url("asset/img/sidebar/Header/headerIcon.png"); /* Path to your background image */
+  background-size: cover; /* Ensure the image covers the entire div */
+  background-position: center; /* Center the background image */
+  border-radius: 50%;
+
+  width: 75px;
+  height: 75px;
+}
+
+.sidebar > .header > p {
+  color: #bbc2cf;
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.task-navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  gap: 5px;
+}
+
+hr {
+  width: 90%;
+  /* background-color: #4e5563; */
+  height: 2px;
+
+  border: 1px solid #4e5563;
+}
+
+.task-navigation button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: bolder;
+  background-color: #131a29;
+  border-style: none;
+  color: #4f5664;
+  font-size: 1rem;
+  cursor: pointer;
+  padding-left: 25%;
+  /* gap: 1px; */
+}
+
+.today-layout,
+.weekly-layout,
+.anyday-layout {
+  display: flex;
+  width: 100%;
+}
+
+.today-btn > .btn-img,
+.today-btn:hover > .btn-img,
+.weekly-btn > .btn-img,
+.weekly-btn:hover > .btn-img,
+.anyday-btn > .btn-img,
+.anyday-btn:hover > .btn-img {
+  background-size: cover; /* Ensure the image covers the entire div */
+  background-position: center; /* Center the background image */
+  width: 45px;
+  height: 45px;
+}
+
+.today-btn > .btn-img {
+  background-image: url("asset/img/sidebar/TaskNavigation/unclicked/today.png"); /* Path to your background image */
+}
+
+.today-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/TaskNavigation/clicked/today.png"); /* Path to your background image */
+}
+
+.weekly-btn > .btn-img {
+  background-image: url("asset/img/sidebar/TaskNavigation/unclicked/weekly.png"); /* Path to your background image */
+}
+
+.weekly-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/TaskNavigation/clicked/weekly.png"); /* Path to your background image */
+}
+
+.anyday-btn > .btn-img {
+  background-image: url("asset/img/sidebar/TaskNavigation/unclicked/anyday.png"); /* Path to your background image */
+}
+
+.anyday-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/TaskNavigation/clicked/anyday.png"); /* Path to your background image */
+}
+
+.today-btn:hover,
+.weekly-btn:hover,
+.anyday:hover {
+  color: #edcb9d;
+}
+
+.category-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  gap: 5px;
+}
+
+.personal-layout,
+.home-layout,
+.learning-layout,
+.health-layout,
+.work-layout,
+.event-layout,
+.social-layout,
+.projectManagement-layout,
+.finance-layout,
+.shopping-layout,
+.travel-layout {
+  display: flex;
+  width: 100%;
+}
+
+.category-container button {
+  width: 100%;
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: bolder;
+  background-color: #131a29;
+  border-style: none;
+  color: #4f5664;
+  font-size: 1rem;
+  cursor: pointer;
+  padding-left: 25%;
+  /* gap: 1px; */
+}
+
+.personal-btn > .btn-img,
+.personal-btn:hover > .btn-img,
+.home-btn > .btn-img,
+.home-btn:hover > .btn-img,
+.learning-btn > .btn-img,
+.learning-btn:hover > .btn-img,
+.health-btn > .btn-img,
+.health-btn:hover > .btn-img,
+.work-btn > .btn-img,
+.work-btn:hover > .btn-img,
+.event-btn > .btn-img,
+.event-btn:hover > .btn-img,
+.projectManagement-btn > .btn-img,
+.projectManagement-btn:hover > .btn-img,
+.shopping-btn > .btn-img,
+.shopping-btn:hover > .btn-img,
+.social-btn > .btn-img,
+.social-btn:hover > .btn-img,
+.finance-btn > .btn-img,
+.finance-btn:hover > .btn-img,
+.travel-btn > .btn-img,
+.travel-btn:hover > .btn-img {
+  background-size: cover; /* Ensure the image covers the entire div */
+  background-position: center; /* Center the background image */
+  width: 45px;
+  height: 45px;
+}
+
+.personal-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/personal.png"); /* Path to your background image */
+}
+
+.personal-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/personal.png"); /* Path to your background image */
+}
+
+.home-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/home.png"); /* Path to your background image */
+}
+
+.home-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/home.png"); /* Path to your background image */
+}
+
+.learning-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/learning.png"); /* Path to your background image */
+}
+
+.learning-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/learning.png"); /* Path to your background image */
+}
+
+.health-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/health.png"); /* Path to your background image */
+}
+
+.health-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/health.png"); /* Path to your background image */
+}
+
+.work-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/work.png"); /* Path to your background image */
+}
+
+.work-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/work.png"); /* Path to your background image */
+}
+
+.event-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/event.png"); /* Path to your background image */
+}
+
+.event-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/event.png"); /* Path to your background image */
+}
+
+.projectManagement-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/projectManagement.png"); /* Path to your background image */
+}
+
+.projectManagement-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/projectManagement.png"); /* Path to your background image */
+}
+
+.projectManagement-btn > p {
+  width: 34px;
+  padding-left: 2px;
+}
+
+.shopping-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/shopping.png"); /* Path to your background image */
+}
+
+.shopping-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/shopping.png"); /* Path to your background image */
+}
+.social-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/social.png"); /* Path to your background image */
+}
+
+.social-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/social.png"); /* Path to your background image */
+}
+
+.finance-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/finance.png"); /* Path to your background image */
+}
+
+.finance-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/finance.png"); /* Path to your background image */
+}
+
+.travel-btn > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/unclicked/travel.png"); /* Path to your background image */
+}
+
+.travel-btn:hover > .btn-img {
+  background-image: url("asset/img/sidebar/CategoryContainer/clicked/travel.png"); /* Path to your background image */
+}
+
+.personal-btn:hover,
+.home-btn:hover,
+.learning-btn:hover,
+.health-btn:hover,
+.work-btn:hover,
+.event-btn:hover,
+.projectManagement-btn:hover,
+.shopping-btn:hover,
+.social-btn:hover,
+.finance-btn:hover,
+.travel-btn:hover {
+  color: #edcb9d;
+}
+
+.main-section {
+  width: 100%;
+  height: 100%;
+  background-color: #000714;
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
