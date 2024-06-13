@@ -342,3 +342,65 @@ hr {
   justify-content: center;
   align-items: center;
 }
+
+.todayContainer,
+.weeklyContainer,
+.anyDayContainer,
+.personalContainer,
+.homeContainer,
+.learningContainer,
+.healthContainer,
+.workContainer,
+.eventContainer,
+.projectManagementContainer,
+.shoppingContainer,
+.financeContainer,
+.socialContainer,
+.travelContainer {
+  width: 95%;
+  height: 95%;
+}
+
+.controlPanel-Layout {
+  padding-top: 3%;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* height: 5%; */
+}
+
+.controlPanel-Layout > button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  background-color: #171e2c;
+  color: #7d8491;
+}
+
+.controlPanel-Layout > button:hover {
+  background-color: #e0c196;
+  color: #181d21;
+}
+
+.searchbar {
+  background-color: #171e2c;
+  border: none;
+  width: 30%;
+  height: 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: #7d8491;
+  outline: none; /* Removes default focus outline */
+}
+
+.searchbar::placeholder {
+  color: #7d8491;
+}
+
+.searchbar:focus {
+  box-shadow: 0 0 5px rgb(224, 193, 150, 0.95); /* Optional: Add a shadow for effect */
+}
