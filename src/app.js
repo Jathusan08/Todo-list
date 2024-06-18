@@ -18,6 +18,11 @@ import { createTravelContainer } from "./Categories/travel.js";
 
 import { getClassName, removeContent, hideElement } from "./Utils/domUtil.js";
 
+import {
+  userInputTextValidation,
+  isDateExist,
+} from "./Validation/dataValidation.js";
+
 const todayBtn = document.querySelector(".today-btn");
 const weeklyBtn = document.querySelector(".weekly-btn");
 const anydayBtn = document.querySelector(".anyday-btn");
@@ -33,9 +38,68 @@ const financeBtn = document.querySelector(".finance-btn");
 const socialBtn = document.querySelector(".social-btn");
 const travelBtn = document.querySelector(".travel-btn");
 
-const addTaskButton = document.querySelector(".addTask-btn");
-
 const mainSection = document.querySelector(".main-section");
+
+//  Modal
+const modal = document.querySelector(".modal");
+const addTaskBtn = document.querySelector(".addTask-btn");
+const closeButton = document.querySelector(".cancel-button");
+const submitButton = document.querySelector(".submit-button");
+
+import { AddCategtoryTitleOnModal } from "./modal/modal.js";
+
+// user input fields
+const titleInput = document.getElementById("title");
+const descriptionInput = document.getElementById("description");
+const dueDate = document.getElementById("dueDate");
+
+// Error labels
+const titleError = document.querySelector(".title > .error");
+const descriptionError = document.querySelector(".description > .error");
+const dueDateError = document.querySelector(".dueDate > .error");
+
+titleInput.addEventListener("input", () => {
+  userInputTextValidation(titleInput, titleError, " Title required");
+});
+
+descriptionInput.addEventListener("input", () => {
+  userInputTextValidation(
+    descriptionInput,
+    descriptionError,
+    " Description required"
+  );
+});
+
+dueDate.addEventListener("input", () => {
+  isDateExist(dueDate, dueDateError, "Invalid date");
+});
+
+addTaskBtn.addEventListener("click", () => {
+  console.log(getClassName(mainSection, 1));
+  modal.showModal();
+  document.querySelector(".modal > h2 > span").textContent =
+    AddCategtoryTitleOnModal(getClassName(mainSection, 1));
+});
+
+submitButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (
+    userInputTextValidation(titleInput, titleError, " Title required") &&
+    userInputTextValidation(
+      descriptionInput,
+      descriptionError,
+      " Description required"
+    ) &&
+    isDateExist(dueDate, dueDateError, "Invalid date")
+  ) {
+    modal.close();
+  } else {
+  }
+});
+
+closeButton.addEventListener("click", () => {
+  modal.close();
+});
 
 (() => {
   // loading the default page when user launch app
