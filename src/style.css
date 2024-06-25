@@ -118,8 +118,8 @@ hr {
 .today-btn:hover > .btn-img,
 .weekly-btn > .btn-img,
 .weekly-btn:hover > .btn-img,
-.anyday-btn > .btn-img,
-.anyday-btn:hover > .btn-img {
+.anyDay-btn > .btn-img,
+.anyDay-btn:hover > .btn-img {
   background-size: cover; /* Ensure the image covers the entire div */
   background-position: center; /* Center the background image */
   width: 45px;
@@ -142,11 +142,11 @@ hr {
   background-image: url("asset/img/sidebar/TaskNavigation/clicked/weekly.png"); /* Path to your background image */
 }
 
-.anyday-btn > .btn-img {
+.anyDay-btn > .btn-img {
   background-image: url("asset/img/sidebar/TaskNavigation/unclicked/anyday.png"); /* Path to your background image */
 }
 
-.anyday-btn:hover > .btn-img {
+.anyDay-btn:hover > .btn-img {
   background-image: url("asset/img/sidebar/TaskNavigation/clicked/anyday.png"); /* Path to your background image */
 }
 

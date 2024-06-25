@@ -1,20 +1,20 @@
 import "./style.css";
 
-import { createTodayContainer } from "./TimeFrame/today.js";
-import { createWeeklyContainer } from "./TimeFrame/weekly.js";
-import { createAnydayContainer } from "./TimeFrame/anyday.js";
+import { todayModule } from "./TimeFrame/today.js";
+import { weeklyModule } from "./TimeFrame/weekly.js";
+import { anydayModule } from "./TimeFrame/anyday.js";
 
-import { createPersonalContainer } from "./Categories/personal.js";
-import { createHomeContainer } from "./Categories/home.js";
-import { createLearningContainer } from "./Categories/learning.js";
-import { createHealthContainer } from "./Categories/health.js";
-import { createWorkContainer } from "./Categories/work.js";
-import { createEventContainer } from "./Categories/event.js";
-import { createProjectManagementContainer } from "./Categories/projectManagement.js";
-import { createShoppingContainer } from "./Categories/shopping.js";
-import { createFinanceContainer } from "./Categories/finance.js";
-import { createSocialContainer } from "./Categories/social.js";
-import { createTravelContainer } from "./Categories/travel.js";
+import { personalModule } from "./Categories/predefined/personal.js";
+import { homeModule } from "./Categories/predefined/home.js";
+import { learningModule } from "./Categories/predefined/learning.js";
+import { healthModule } from "./Categories/predefined/health.js";
+import { workModule } from "./Categories/predefined/work.js";
+import { eventModule } from "./Categories/predefined/event.js";
+import { projectManagementModule } from "./Categories/predefined/projectManagement.js";
+import { shoppingModule } from "./Categories/predefined/shopping.js";
+import { financeModule } from "./Categories/predefined/finance.js";
+import { socialModule } from "./Categories/predefined/social.js";
+import { travelModule } from "./Categories/predefined/travel.js";
 
 import { getClassName, removeContent, hideElement } from "./Utils/domUtil.js";
 
@@ -23,20 +23,39 @@ import {
   isDateExist,
 } from "./Validation/dataValidation.js";
 
-const todayBtn = document.querySelector(".today-btn");
-const weeklyBtn = document.querySelector(".weekly-btn");
-const anydayBtn = document.querySelector(".anyday-btn");
-const personalBtn = document.querySelector(".personal-btn");
-const homeBtn = document.querySelector(".home-btn");
-const learningBtn = document.querySelector(".learning-btn");
-const healthBtn = document.querySelector(".health-btn");
-const workBtn = document.querySelector(".work-btn");
-const eventBtn = document.querySelector(".event-btn");
-const projectManagementBtn = document.querySelector(".projectManagement-btn");
-const shoppingBtn = document.querySelector(".shopping-btn");
-const financeBtn = document.querySelector(".finance-btn");
-const socialBtn = document.querySelector(".social-btn");
-const travelBtn = document.querySelector(".travel-btn");
+const prefefinedCategoryButton = [
+  document.querySelector(".today-btn"),
+  document.querySelector(".weekly-btn"),
+  document.querySelector(".anyDay-btn"),
+  document.querySelector(".personal-btn"),
+  document.querySelector(".home-btn"),
+  document.querySelector(".learning-btn"),
+  document.querySelector(".health-btn"),
+  document.querySelector(".work-btn"),
+  document.querySelector(".event-btn"),
+  document.querySelector(".projectManagement-btn"),
+  document.querySelector(".shopping-btn"),
+  document.querySelector(".finance-btn"),
+  document.querySelector(".social-btn"),
+  document.querySelector(".travel-btn"),
+];
+
+const categoryContainer = [
+  todayModule,
+  weeklyModule,
+  anydayModule,
+  personalModule,
+  homeModule,
+  learningModule,
+  healthModule,
+  workModule,
+  eventModule,
+  projectManagementModule,
+  shoppingModule,
+  financeModule,
+  socialModule,
+  travelModule,
+];
 
 const mainSection = document.querySelector(".main-section");
 
@@ -102,104 +121,18 @@ closeButton.addEventListener("click", () => {
 });
 
 (() => {
-  // loading the default page when user launch app
-  createTodayContainer();
+  // loading the default page when user launch app which is today
+  categoryContainer[0].loadContainer();
 })();
 
-todayBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "todayContainer") {
-    removeContent(mainSection, 1); // remove the current layout that is not todayContainer
-    createTodayContainer();
-  }
-});
-
-weeklyBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "weeklyContainer") {
-    removeContent(mainSection, 1);
-    createWeeklyContainer();
-  }
-});
-
-anydayBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "anyDayContainer") {
-    removeContent(mainSection, 1);
-    createAnydayContainer();
-  }
-});
-
-personalBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "personalContainer") {
-    removeContent(mainSection, 1);
-    createPersonalContainer();
-  }
-});
-
-homeBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "homeContainer") {
-    removeContent(mainSection, 1);
-    createHomeContainer();
-  }
-});
-
-learningBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "learningContainer") {
-    removeContent(mainSection, 1);
-    createLearningContainer();
-  }
-});
-
-healthBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "healthContainer") {
-    removeContent(mainSection, 1);
-    createHealthContainer();
-  }
-});
-
-workBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "workContainer") {
-    removeContent(mainSection, 1);
-    createWorkContainer();
-  }
-});
-
-eventBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "eventContainer") {
-    removeContent(mainSection, 1);
-    createEventContainer();
-  }
-});
-
-projectManagementBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "projectManagementContainer") {
-    removeContent(mainSection, 1);
-    createProjectManagementContainer();
-  }
-});
-
-shoppingBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "shoppingContainer") {
-    removeContent(mainSection, 1);
-    createShoppingContainer();
-  }
-});
-
-financeBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "financeContainer") {
-    removeContent(mainSection, 1);
-    createFinanceContainer();
-  }
-});
-
-socialBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "socialContainer") {
-    removeContent(mainSection, 1);
-    createSocialContainer();
-  }
-});
-
-travelBtn.addEventListener("click", () => {
-  if (getClassName(mainSection, 1) != "travelContainer") {
-    removeContent(mainSection, 1);
-    createTravelContainer();
-  }
+prefefinedCategoryButton.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    if (
+      button.className.split("-")[0] !=
+      getClassName(mainSection, 1).replace("Container", "")
+    ) {
+      removeContent(mainSection, 1);
+      categoryContainer[index].loadContainer();
+    }
+  });
 });
