@@ -1,138 +1,145 @@
 import "./style.css";
 
-import { todayModule } from "./TimeFrame/today.js";
-import { weeklyModule } from "./TimeFrame/weekly.js";
-import { anydayModule } from "./TimeFrame/anyday.js";
-
-import { personalModule } from "./Categories/predefined/personal.js";
-import { homeModule } from "./Categories/predefined/home.js";
-import { learningModule } from "./Categories/predefined/learning.js";
-import { healthModule } from "./Categories/predefined/health.js";
-import { workModule } from "./Categories/predefined/work.js";
-import { eventModule } from "./Categories/predefined/event.js";
-import { projectManagementModule } from "./Categories/predefined/projectManagement.js";
-import { shoppingModule } from "./Categories/predefined/shopping.js";
-import { financeModule } from "./Categories/predefined/finance.js";
-import { socialModule } from "./Categories/predefined/social.js";
-import { travelModule } from "./Categories/predefined/travel.js";
-
-import { getClassName, removeContent, hideElement } from "./Utils/domUtil.js";
-
 import {
-  userInputTextValidation,
-  isDateExist,
-} from "./Validation/dataValidation.js";
-
-const prefefinedCategoryButton = [
-  document.querySelector(".today-btn"),
-  document.querySelector(".weekly-btn"),
-  document.querySelector(".anyDay-btn"),
-  document.querySelector(".personal-btn"),
-  document.querySelector(".home-btn"),
-  document.querySelector(".learning-btn"),
-  document.querySelector(".health-btn"),
-  document.querySelector(".work-btn"),
-  document.querySelector(".event-btn"),
-  document.querySelector(".projectManagement-btn"),
-  document.querySelector(".shopping-btn"),
-  document.querySelector(".finance-btn"),
-  document.querySelector(".social-btn"),
-  document.querySelector(".travel-btn"),
-];
-
-const categoryContainer = [
   todayModule,
   weeklyModule,
   anydayModule,
+} from "./Categories/timeFrameCategories.js";
+
+import {
   personalModule,
-  homeModule,
-  learningModule,
-  healthModule,
-  workModule,
-  eventModule,
-  projectManagementModule,
-  shoppingModule,
-  financeModule,
-  socialModule,
   travelModule,
-];
+  socialModule,
+  financeModule,
+  shoppingModule,
+  projectManagementModule,
+  eventModule,
+  workModule,
+  healthModule,
+  learningModule,
+  homeModule,
+} from "./Categories/predefinedCategories.js";
+
+import { getClassName, removeContent } from "./Utils/domUtil.js";
+
+import { AddCategtoryTitleOnModal, popupWindow } from "./modal/modal.js";
 
 const mainSection = document.querySelector(".main-section");
 
-//  Modal
-const modal = document.querySelector(".modal");
 const addTaskBtn = document.querySelector(".addTask-btn");
-const closeButton = document.querySelector(".cancel-button");
-const submitButton = document.querySelector(".submit-button");
 
-import { AddCategtoryTitleOnModal } from "./modal/modal.js";
+export const tabModule = (() => {
+  let seletctedTab = 0; // default to today
 
-// user input fields
-const titleInput = document.getElementById("title");
-const descriptionInput = document.getElementById("description");
-const dueDate = document.getElementById("dueDate");
+  const tabs = [
+    {
+      tabButton: document.querySelector(".today-btn"),
+      tabModule: todayModule,
+    },
+    {
+      tabButton: document.querySelector(".weekly-btn"),
+      tabModule: weeklyModule,
+    },
+    {
+      tabButton: document.querySelector(".anyDay-btn"),
+      tabModule: anydayModule,
+    },
+    {
+      tabButton: document.querySelector(".personal-btn"),
+      tabModule: personalModule,
+    },
+    {
+      tabButton: document.querySelector(".home-btn"),
+      tabModule: homeModule,
+    },
+    {
+      tabButton: document.querySelector(".learning-btn"),
+      tabModule: learningModule,
+    },
+    {
+      tabButton: document.querySelector(".health-btn"),
+      tabModule: healthModule,
+    },
+    {
+      tabButton: document.querySelector(".work-btn"),
+      tabModule: workModule,
+    },
+    {
+      tabButton: document.querySelector(".event-btn"),
+      tabModule: eventModule,
+    },
+    {
+      tabButton: document.querySelector(".projectManagement-btn"),
+      tabModule: projectManagementModule,
+    },
+    {
+      tabButton: document.querySelector(".shopping-btn"),
+      tabModule: shoppingModule,
+    },
+    {
+      tabButton: document.querySelector(".finance-btn"),
+      tabModule: financeModule,
+    },
+    {
+      tabButton: document.querySelector(".social-btn"),
+      tabModule: socialModule,
+    },
+    {
+      tabButton: document.querySelector(".travel-btn"),
+      tabModule: travelModule,
+    },
+  ];
 
-// Error labels
-const titleError = document.querySelector(".title > .error");
-const descriptionError = document.querySelector(".description > .error");
-const dueDateError = document.querySelector(".dueDate > .error");
+  const loadTodayTab = () => {
+    return tabs[0].tabModule.loadContainer();
+  };
 
-titleInput.addEventListener("input", () => {
-  userInputTextValidation(titleInput, titleError, " Title required");
-});
+  const placeTaskInTab = (newTask) => {
+    tabs[seletctedTab].tabModule.addTask(newTask);
+  };
 
-descriptionInput.addEventListener("input", () => {
-  userInputTextValidation(
-    descriptionInput,
-    descriptionError,
-    " Description required"
-  );
-});
+  const clickTabBtns = () => {
+    tabs.forEach((tab, index) => {
+      tab.tabButton.addEventListener("click", () => {
+        seletctedTab = index;
 
-dueDate.addEventListener("input", () => {
-  isDateExist(dueDate, dueDateError, "Invalid date");
-});
+        if (
+          tab.tabButton.className.split("-")[0] !=
+          getClassName(mainSection, 1).replace("Container", "")
+        ) {
+          removeContent(mainSection, 1);
+          tab.tabModule.loadContainer();
+        }
+      });
+    });
+  };
+
+  return {
+    clickTabBtns,
+    loadTodayTab,
+    placeTaskInTab,
+  };
+})();
+
+popupWindow.titleInputEventListener(); // titleInput on modal
+
+popupWindow.descriptionInputEventListener(); // descriptionInput on modal
+
+popupWindow.dueDateInputEvenetListener(); // // dueDateInput on modal
 
 addTaskBtn.addEventListener("click", () => {
-  console.log(getClassName(mainSection, 1));
-  modal.showModal();
+  popupWindow.open();
   document.querySelector(".modal > h2 > span").textContent =
     AddCategtoryTitleOnModal(getClassName(mainSection, 1));
 });
 
-submitButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  if (
-    userInputTextValidation(titleInput, titleError, " Title required") &&
-    userInputTextValidation(
-      descriptionInput,
-      descriptionError,
-      " Description required"
-    ) &&
-    isDateExist(dueDate, dueDateError, "Invalid date")
-  ) {
-    modal.close();
-  } else {
-  }
-});
-
-closeButton.addEventListener("click", () => {
-  modal.close();
-});
+popupWindow.submit(); // when user clicks on submit button on Modal when adding or editing task
 
 (() => {
   // loading the default page when user launch app which is today
-  categoryContainer[0].loadContainer();
+  tabModule.loadTodayTab();
 })();
 
-prefefinedCategoryButton.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    if (
-      button.className.split("-")[0] !=
-      getClassName(mainSection, 1).replace("Container", "")
-    ) {
-      removeContent(mainSection, 1);
-      categoryContainer[index].loadContainer();
-    }
-  });
-});
+tabModule.clickTabBtns(); // all predfefined category buttons event listener
+
+popupWindow.cancel(); // modal cancel button action event listener
