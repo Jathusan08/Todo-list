@@ -338,7 +338,7 @@ hr {
   grid-column: 2 / 3;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 20px;
   justify-content: center;
   align-items: center;
 }
@@ -547,4 +547,201 @@ input:focus {
 .error {
   font-size: 0.75rem;
   font-weight: lighter;
+}
+
+* .main-section > div:nth-child(2) {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-height: 900px;
+  overflow: auto;
+  scrollbar-color: #4e5563 #4e5563;
+  width: 95%;
+
+  padding-bottom: 50px;
+}
+
+.main-section > div:nth-child(2) > div:nth-child(1) {
+  text-align: center;
+  color: #bec5d2;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.main-section > div:nth-child(2) > div:nth-child(2) {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 65px;
+  row-gap: 10px;
+  height: 100%;
+  width: 85%;
+}
+
+.main-section > div:nth-child(2) > div:nth-child(2) > .grid {
+  background-color: #0f1623;
+  width: auto;
+  height: 100%;
+}
+
+.main-section > div:nth-child(2) > div:nth-child(2) > .grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-section > div:nth-child(2) > div:nth-child(2) > .grid > .gridLayout {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  gap: 10px;
+}
+
+.main-section
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > .grid
+  > .gridLayout
+  > .checkBoxLayout {
+  height: 100%;
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: goldenrod; */
+}
+
+.main-section
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > .grid
+  > .gridLayout
+  > .taskInfoLayout {
+  /* background-color: violet; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .taskTitle {
+  color: #c7cedb;
+  font-size: 1.25rem;
+  font-weight: bold;
+  height: 100%;
+  width: 25%;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .taskPriority {
+  width: 13%;
+  height: 55%;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .taskTitle,
+.grid > .gridLayout > .taskInfoLayout > .taskPriority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .taskdueDate {
+  color: #b6bdca;
+}
+
+.highPrioirity {
+  color: #d74653;
+  background-color: #251b29;
+}
+
+.mediumPrioirity {
+  color: #d7b546;
+  background-color: #29231b;
+}
+
+.lowPrioirity {
+  background-color: #1a2940;
+  color: #4a7ddb;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .buttonLayout {
+  width: 30%;
+  height: 100%;
+  gap: 15px;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .buttonLayout > button {
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #202735;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .buttonLayout,
+.grid > .gridLayout > .taskInfoLayout > .buttonLayout > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .buttonLayout > button > .btn-img,
+.grid
+  > .gridLayout
+  > .taskInfoLayout
+  > .buttonLayout
+  > button:hover
+  > .btn-img {
+  background-size: cover; /* Ensure the image covers the entire div */
+  background-position: center; /* Center the background image */
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.grid > .gridLayout > .taskInfoLayout > .buttonLayout > .delete-btn > .btn-img {
+  background-image: url("asset/img/grid/unclicked/deleteBtn.png");
+}
+
+.grid
+  > .gridLayout
+  > .taskInfoLayout
+  > .buttonLayout
+  > .delete-btn:hover
+  > .btn-img {
+  background-image: url("asset/img/grid/clicked/deleteBtn.png");
+}
+
+.grid > .gridLayout > .taskInfoLayout > .buttonLayout > .edit-btn > .btn-img {
+  background-image: url("asset/img/grid/unclicked/editBtn.png");
+}
+
+.grid
+  > .gridLayout
+  > .taskInfoLayout
+  > .buttonLayout
+  > .edit-btn:hover
+  > .btn-img {
+  background-image: url("asset/img/grid/clicked/editBtn.png");
+}
+
+.grid > .gridLayout > .taskInfoLayout > .buttonLayout > .detail-btn > .btn-img {
+  background-image: url("asset/img/grid/unclicked/detailBtn.png");
+}
+
+.grid
+  > .gridLayout
+  > .taskInfoLayout
+  > .buttonLayout
+  > .detail-btn:hover
+  > .btn-img {
+  background-image: url("asset/img/grid/clicked/detailBtn.png");
+}
+
+input[type="checkbox"] {
+  accent-color: green;
 }

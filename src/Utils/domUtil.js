@@ -11,3 +11,9 @@ export const removeContent = (element, index) => {
 export const hideElement = (element, option) => {
   element.setAttribute("style", `display: ${option};`);
 };
+
+export const addNewElement = (elementType, className) => {
+  const newElement = document.createElement(elementType);
+  newElement.classList.add(className);
+  return newElement;
+};

@@ -1,4 +1,6 @@
 export class TodoItem {
+  #completedStatus = false;
+
   constructor(title, description, dueDate) {
     // the constructor...
     this._title = title;
@@ -44,5 +46,14 @@ export class TodoItem {
 
   get note() {
     return this._note;
+  }
+
+  // Getter and setter for completedStatus
+  set completedStatus(status) {
+    this.#completedStatus = status;
+  }
+
+  get completedStatus() {
+    return this.#completedStatus;
   }
 }

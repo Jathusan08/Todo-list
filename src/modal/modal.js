@@ -62,8 +62,9 @@ export const popupWindow = (() => {
         );
         newTask.priority = prioritySelection.value;
         newTask.note = noteInput.value;
+        console.log(typeof newTask.dueDate);
         tabModule.placeTaskInTab(newTask);
-        popupWindow.close();
+        close();
       } else {
       }
     });
@@ -139,7 +140,7 @@ export const clearModalValues = () => {
   descriptionInput.value = "";
   noteInput.value = "";
   dueDateInput.value = "";
-  selectOptionByValue(prioritySelection, "low");
+  selectOptionByValue(prioritySelection, "Low");
   titleError.textContent = "";
   descriptionError.textContent = "";
   dueDateError.textContent = "";
