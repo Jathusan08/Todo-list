@@ -24,6 +24,8 @@ import { getClassName, removeContent } from "./Utils/domUtil.js";
 
 import { AddCategtoryTitleOnModal, popupWindow } from "./modal/modal.js";
 
+import { detailViewModal } from "./modal/taskDetailModal.js";
+
 const mainSection = document.querySelector(".main-section");
 
 const addTaskBtn = document.querySelector(".addTask-btn");
@@ -114,10 +116,20 @@ export const tabModule = (() => {
     });
   };
 
+  const updateTaskInTab = (task, taskIndex) => {
+    tabs[seletctedTab].tabModule.updateTask(task, taskIndex);
+  };
+
+  const deleteTaskInTab = (taskIndex) => {
+    tabs[seletctedTab].tabModule.deleteTask(taskIndex);
+  };
+
   return {
     clickTabBtns,
     loadTodayTab,
     placeTaskInTab,
+    updateTaskInTab,
+    deleteTaskInTab,
   };
 })();
 
@@ -128,9 +140,14 @@ popupWindow.descriptionInputEventListener(); // descriptionInput on modal
 popupWindow.dueDateInputEvenetListener(); // // dueDateInput on modal
 
 addTaskBtn.addEventListener("click", () => {
-  popupWindow.open();
-  document.querySelector(".modal > h2 > span").textContent =
-    AddCategtoryTitleOnModal(getClassName(mainSection, 1));
+  popupWindow.open(null); // new data enter rather than updating existinf data
+  document.querySelector(
+    ".modal > h2"
+  ).textContent = `New Task For ${AddCategtoryTitleOnModal(
+    getClassName(mainSection, 1)
+  )}`;
+  // document.querySelector(".modal > h2 > span").textContent =
+  //   AddCategtoryTitleOnModal(getClassName(mainSection, 1));
 });
 
 popupWindow.submit(); // when user clicks on submit button on Modal when adding or editing task
@@ -143,3 +160,5 @@ popupWindow.submit(); // when user clicks on submit button on Modal when adding 
 tabModule.clickTabBtns(); // all predfefined category buttons event listener
 
 popupWindow.cancel(); // modal cancel button action event listener
+
+detailViewModal.close(); // when user vist detail view modal and click outside it will close by iteself

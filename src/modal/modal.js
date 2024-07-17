@@ -24,22 +24,38 @@ const descriptionError = document.querySelector(".description > .error");
 const dueDateError = document.querySelector(".dueDate > .error");
 
 export const popupWindow = (() => {
-  const open = () => {
+  // -1 to add new task or more than -1 to update task
+  let taskIndex = -1;
+
+  const open = (data) => {
     console.log("Modal Open");
+
+    if (data === null && taskIndex === -1) {
+      // when user clicks on add task button so no need to populate the text fields
+      clearModalValues();
+    } else if (data != null) {
+      console.log("data exist");
+      titleInput.value = data[0].title;
+      descriptionInput.value = data[0].description;
+      dueDateInput.value = data[0].dueDate;
+      prioritySelection.value = data[0].priority;
+      noteInput.value = data[0].note;
+      taskIndex = data[1];
+    }
+
     modal.showModal();
   };
 
   const close = () => {
     modal.close();
     clearModalValues();
+    taskIndex = -1;
   };
 
   const cancel = () => {
     closeButton.addEventListener("click", () => {
       console.log("close btn activated");
-
-      modal.close();
-      clearModalValues();
+      close();
     });
   };
 
@@ -55,15 +71,23 @@ export const popupWindow = (() => {
         ) &&
         isDateExist(dueDate, dueDateError, "Invalid date")
       ) {
-        const newTask = new TodoItem(
+        const task = new TodoItem(
           titleInput.value,
           descriptionInput.value,
           dueDateInput.value
         );
-        newTask.priority = prioritySelection.value;
-        newTask.note = noteInput.value;
-        console.log(typeof newTask.dueDate);
-        tabModule.placeTaskInTab(newTask);
+        task.priority = prioritySelection.value;
+        task.note = noteInput.value;
+        console.log(dueDateInput.value);
+        console.log(typeof dueDateInput);
+        if (taskIndex === -1) {
+          // add new task
+          tabModule.placeTaskInTab(task);
+        } else if (taskIndex > -1) {
+          // update existing task
+          tabModule.updateTaskInTab(task, taskIndex);
+        }
+
         close();
       } else {
       }

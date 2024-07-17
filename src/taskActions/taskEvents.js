@@ -1,9 +1,47 @@
+import { detailViewModal } from "../modal/taskDetailModal.js";
+import { popupWindow, AddCategtoryTitleOnModal } from "../modal/modal.js";
+import { getClassName } from "../Utils/domUtil.js";
+import { tabModule } from "../app.js";
 export const taskHandlers = (() => {
-  const editEventListener = () => {};
+  const taskActions = (button) => {
+    const eventTarget =
+      button.target.parentNode.parentNode.parentNode.parentNode.parentNode;
 
-  const viewEventListener = () => {};
+    const editEventListener = (task) => {
+      if (eventTarget.classList.contains("grid")) {
+        const mainSection = document.querySelector(".main-section");
+        console.log("edit Button Clicked");
+        document.querySelector(
+          ".modal > h2"
+        ).textContent = `Update Task For ${AddCategtoryTitleOnModal(
+          getClassName(mainSection, 1)
+        )}`;
+        popupWindow.open([
+          task,
+          Number(eventTarget.getAttribute("data-Index")),
+        ]);
+      }
+    };
 
-  const deleteEventListener = () => {};
+    const viewEventListener = (task, containerName) => {
+      if (eventTarget.classList.contains("grid")) {
+        console.log("Detail Button Clicked");
+        detailViewModal.open(task, containerName);
+      }
+    };
+
+    const deleteEventListener = () => {
+      if (eventTarget.classList.contains("grid")) {
+        console.log("Delete Button Clicked");
+        tabModule.deleteTaskInTab(
+          Number(eventTarget.getAttribute("data-Index"))
+        );
+        //  console.log(eventTarget.getAttribute("data-Index"));
+      }
+    };
+
+    return { editEventListener, viewEventListener, deleteEventListener };
+  };
 
   const checkBoxEventListener = (button, task) => {
     console.log(button.target.parentNode.parentNode.parentNode);
@@ -33,9 +71,7 @@ export const taskHandlers = (() => {
   };
 
   return {
-    editEventListener,
-    viewEventListener,
-    deleteEventListener,
+    taskActions,
     checkBoxEventListener,
     updateCheckboxStatus,
   };

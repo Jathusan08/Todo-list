@@ -745,3 +745,113 @@ input:focus {
 input[type="checkbox"] {
   accent-color: green;
 }
+
+dialog[class~="detailModal"] {
+  margin: 10% auto;
+  width: 80%;
+  height: 68%;
+  max-width: 500px;
+  max-height: 850px;
+  padding: 34px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #161d2b;
+  border: 1px solid #131a29;
+}
+
+dialog[class~="detailModal"]::backdrop {
+  backdrop-filter: blur(5px);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+}
+
+dialog[class~="detailModal"] > .detailContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detailContainer > .taskProjectName {
+  text-align: center;
+  color: #c8cfdc;
+}
+
+.detailContainer > .taskTitleContainer {
+  font-size: 1.25rem;
+  color: #9299a7;
+  display: flex;
+  gap: 5px;
+}
+
+.detailContainer > .taskDescriptionContainer {
+  font-size: 1.25rem;
+  color: #9299a7;
+  display: flex;
+  gap: 5px;
+}
+
+.detailContainer > .taskDescriptionContainer > textarea {
+  height: 75px;
+  color: #9299a7;
+  width: 325px;
+  resize: none;
+  background-color: #161d2b;
+}
+
+.detailContainer > .taskDescriptionContainer > textarea:focus {
+  outline: none;
+}
+
+.detailContainer > .taskPriorityContainer {
+  font-size: 1.25rem;
+  color: #9299a7;
+  display: flex;
+  gap: 5px;
+}
+
+.detailContainer > .taskPriorityContainer > div:nth-child(2) {
+  width: 100px;
+  text-align: center;
+}
+
+.detailContainer > .taskDueDateContainer {
+  font-size: 1.25rem;
+  color: #9299a7;
+  display: flex;
+  gap: 5px;
+}
+
+.detailContainer > .taskNoteContainer {
+  font-size: 1.25rem;
+  color: #9299a7;
+  display: flex;
+  gap: 5px;
+}
+
+.detailContainer > .taskNoteContainer > textarea {
+  height: 75px;
+  color: #9299a7;
+  width: 325px;
+  resize: none;
+  background-color: #161d2b;
+}
+
+.detailContainer > .taskNoteContainer > textarea:focus {
+  outline: none;
+}
+
+.detailContainer > .taskStatusContainer {
+  display: flex;
+  font-size: 1.25rem;
+  color: #9299a7;
+  gap: 5px;
+}
+
+.detailContainer > .taskStatusContainer > .taskStatus,
+.detailContainer > .taskDueDateContainer > .taskDueDate,
+.detailContainer > .taskPriorityContainer > .taskPriority,
+.detailContainer > .taskTitleContainer > .taskTitle {
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

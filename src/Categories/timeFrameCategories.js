@@ -19,6 +19,7 @@ export const weeklyModule = createModule("weeklyContainer", [
   [],
 ]);
 
+//Overriding methods
 weeklyModule.loadContainer = () => {
   generateContainer("weeklyContainer");
   weeklyModule.getData()[0].push("test");
@@ -27,3 +28,5 @@ weeklyModule.loadContainer = () => {
 };
 
 weeklyModule.addTask = (task) => {};
+
+// May need to override methods for these

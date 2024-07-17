@@ -1,6 +1,7 @@
 import { addNewElement } from "./domUtil.js";
 import { setPriority } from "./priorityDom.js";
 import { taskHandlers } from "../taskActions/taskEvents.js";
+import { handleDate } from "./dateUtil.js";
 const { format } = require("date-fns");
 
 export const generateContainer = (containerName) => {
@@ -63,6 +64,7 @@ export const addTaskToGridLayout = (task, index) => {
   taskHandlers.updateCheckboxStatus(task, checkBox);
 
   checkBox.addEventListener("change", (checkBoxBtn) => {
+    console.log({ task });
     taskHandlers.checkBoxEventListener(checkBoxBtn, task);
   });
 
@@ -84,8 +86,8 @@ export const addTaskToGridLayout = (task, index) => {
   taskInfoLayout.appendChild(taskPriority);
 
   const taskdueDate = addNewElement("div", "taskdueDate");
-  const date = new Date(task.dueDate);
-  taskdueDate.textContent = `${format(date, "dd-MM-yyyy")}`;
+
+  taskdueDate.textContent = handleDate(task.dueDate);
   taskInfoLayout.appendChild(taskdueDate);
 
   const buttonLayout = addNewElement("div", "buttonLayout");
@@ -93,10 +95,12 @@ export const addTaskToGridLayout = (task, index) => {
 
   const detailBtn = addNewElement("button", "detail-btn");
   detailBtn.addEventListener("click", (btn) => {
-    console.log(
-      btn.target.parentNode.parentNode.parentNode.parentNode.parentNode
-    );
-    console.log("Detail Button Clicked");
+    taskHandlers
+      .taskActions(btn)
+      .viewEventListener(
+        task,
+        `${mainContainer.className.replace("Container", "")}`
+      );
   });
   const detailBtnImg = addNewElement("div", "btn-img");
   detailBtn.appendChild(detailBtnImg);
@@ -104,10 +108,7 @@ export const addTaskToGridLayout = (task, index) => {
 
   const editBtn = addNewElement("button", "edit-btn");
   editBtn.addEventListener("click", (btn) => {
-    console.log(
-      btn.target.parentNode.parentNode.parentNode.parentNode.parentNode
-    );
-    console.log("edit Button Clicked");
+    taskHandlers.taskActions(btn).editEventListener(task);
   });
 
   const editBtnImg = addNewElement("div", "btn-img");
@@ -116,13 +117,50 @@ export const addTaskToGridLayout = (task, index) => {
 
   const deleteBtn = addNewElement("button", "delete-btn");
   deleteBtn.addEventListener("click", (btn) => {
-    console.log(
-      btn.target.parentNode.parentNode.parentNode.parentNode.parentNode
-    );
-    console.log("Delete Button Clicked");
+    taskHandlers.taskActions(btn).deleteEventListener();
   });
   buttonLayout.appendChild(deleteBtn);
   const deleteBtnImg = addNewElement("div", "btn-img");
   deleteBtn.appendChild(deleteBtnImg);
   buttonLayout.appendChild(deleteBtn);
+};
+
+export const updateTaskToGridLayout = (task, index) => {
+  const updateGrid = document.querySelector(
+    `.main-section > div:nth-child(2) > div:nth-child(2) > div[class~="grid"]:nth-child(${
+      index + 1
+    })`
+  );
+
+  updateGrid.childNodes[0].childNodes[1].childNodes[0].textContent = task.title; // update title
+  updateGrid.childNodes[0].childNodes[1].childNodes[1].textContent =
+    task.priority; // update priority
+  setPriority(
+    updateGrid.childNodes[0].childNodes[1].childNodes[1],
+    task.priority
+  );
+  const date = new Date(task.dueDate);
+  updateGrid.childNodes[0].childNodes[1].childNodes[2].textContent = handleDate(
+    task.dueDate
+  ); // upddate due date;
+};
+
+export const removeGrid = (index) => {
+  const deleteGrid = document.querySelector(
+    `.main-section > div:nth-child(2) > div:nth-child(2) > div[class~="grid"]:nth-child(${
+      index + 1
+    })`
+  );
+
+  deleteGrid.remove();
+  updateAllGridIndex();
+};
+
+const updateAllGridIndex = () => {
+  const allGrid = document.querySelectorAll(
+    `.main-section > div:nth-child(2) > div:nth-child(2) > div[class~="grid"]`
+  );
+  allGrid.forEach((grid, index) => {
+    grid.setAttribute("data-index", index);
+  });
 };
