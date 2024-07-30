@@ -26,6 +26,10 @@ import { AddCategtoryTitleOnModal, popupWindow } from "./modal/modal.js";
 
 import { detailViewModal } from "./modal/taskDetailModal.js";
 
+import { searchModule } from "./searchBar/ searchBar.js";
+
+import { filterModule } from "./sortBy/filterButtons.js";
+
 const mainSection = document.querySelector(".main-section");
 
 const addTaskBtn = document.querySelector(".addTask-btn");
@@ -120,8 +124,36 @@ export const tabModule = (() => {
     tabs[seletctedTab].tabModule.updateTask(task, taskIndex);
   };
 
+  const loadTaskDataInTab = () => {
+    tabs[seletctedTab].tabModule.loadData();
+  };
+
   const deleteTaskInTab = (taskIndex) => {
     tabs[seletctedTab].tabModule.deleteTask(taskIndex);
+  };
+
+  const searchTaskInTab = (task) => {
+    tabs[seletctedTab].tabModule.searchTask(task);
+  };
+
+  const filterCompletionTaskStatusInTab = (completionStatus) => {
+    tabs[seletctedTab].tabModule.sortByCompletionTaskStatus(completionStatus);
+  };
+
+  const filterPriorityInTab = (taskPriority) => {
+    tabs[seletctedTab].tabModule.sortByPriority(taskPriority);
+  };
+
+  const filterTaskTitleInTab = (sortOrder) => {
+    tabs[seletctedTab].tabModule.sortByTitleTask(sortOrder);
+  };
+
+  const filterTaskDateInTab = (sortOrder) => {
+    tabs[seletctedTab].tabModule.sortByDate(sortOrder);
+  };
+
+  const filterInsertionOrderInTab = () => {
+    tabs[seletctedTab].tabModule.sortByInsertionOrder();
   };
 
   return {
@@ -130,6 +162,13 @@ export const tabModule = (() => {
     placeTaskInTab,
     updateTaskInTab,
     deleteTaskInTab,
+    searchTaskInTab,
+    loadTaskDataInTab,
+    filterCompletionTaskStatusInTab,
+    filterPriorityInTab,
+    filterTaskTitleInTab,
+    filterTaskDateInTab,
+    filterInsertionOrderInTab,
   };
 })();
 
@@ -153,8 +192,7 @@ addTaskBtn.addEventListener("click", () => {
 popupWindow.submit(); // when user clicks on submit button on Modal when adding or editing task
 
 (() => {
-  // loading the default page when user launch app which is today
-  tabModule.loadTodayTab();
+  tabModule.loadTodayTab(); // loading the default page when user launch app which is today
 })();
 
 tabModule.clickTabBtns(); // all predfefined category buttons event listener
@@ -162,3 +200,25 @@ tabModule.clickTabBtns(); // all predfefined category buttons event listener
 popupWindow.cancel(); // modal cancel button action event listener
 
 detailViewModal.close(); // when user vist detail view modal and click outside it will close by iteself
+
+searchModule.performSearch(); // when user click on the search bar this code triggers
+
+filterModule.insertionOrderEventListener();
+
+filterModule.completeTasksEventListener(); //when user clicks on the filter option - complete Task
+
+filterModule.incompleteTasksEventListener(); //when user clicks on the filter option - incomplete Task
+
+filterModule.highPriorityTasksEventListener(); //when user clicks on the filter option - High priority Task
+
+filterModule.lowPriorityTasksEventListener(); //when user clicks on the filter option - low priority Task
+
+filterModule.mediumPriorityTasksEventListener(); //when user clicks on the filter option - medium priority Task
+
+filterModule.titleAsecEventListener();
+
+filterModule.titleDescEventListener();
+
+filterModule.dateAsecEventListener();
+
+filterModule.dateDescEventListener();

@@ -8,12 +8,13 @@ export const removeContent = (element, index) => {
   element.removeChild(childToRemove);
 };
 
-export const hideElement = (element, option) => {
-  element.setAttribute("style", `display: ${option};`);
-};
-
 export const addNewElement = (elementType, className) => {
   const newElement = document.createElement(elementType);
   newElement.classList.add(className);
   return newElement;
+};
+
+export const toggleElementVisibility = (elementType, toggle) => {
+  const element = document.querySelector(elementType);
+  element.style.display = toggle;
 };
