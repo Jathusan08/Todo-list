@@ -28,7 +28,7 @@ const status = document.querySelector(
 
 export const detailViewModal = (() => {
   const open = (task, containerName) => {
-    console.log("Detail Modal Open");
+    // console.log("Detail Modal Open");
     projectName.textContent =
       containerName.charAt(0).toUpperCase() + containerName.slice(1);
     title.textContent = task.title;
@@ -50,9 +50,6 @@ export const detailViewModal = (() => {
   };
 
   const close = () => {
-    // detailModal.close();
-    //sclearModalValues();
-
     window.onclick = function (event) {
       if (event.target == detailModal) {
         detailModal.close();

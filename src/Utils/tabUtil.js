@@ -120,8 +120,19 @@ export const addTaskToGridLayout = (task, index) => {
   taskHandlers.updateCheckboxStatus(task, checkBox);
 
   checkBox.addEventListener("change", (checkBoxBtn) => {
-    console.log({ task });
-    taskHandlers.checkBoxEventListener(checkBoxBtn, task);
+    // console.log({ task });
+    let getStatus = taskHandlers.checkBoxEventListener(checkBoxBtn, task);
+
+    let tabName =
+      `${mainContainer.className}`.charAt(0).toUpperCase() +
+      `${mainContainer.className}`
+        .replace("Container", "")
+        .substring(1)
+        .split(/(?=[A-Z])/)
+        .join(" ");
+    let storageData = JSON.parse(localStorage.getItem(`${tabName}-data`));
+    storageData[index]._completedStatus = getStatus;
+    localStorage.setItem(`${tabName}-data`, JSON.stringify(storageData));
   });
 
   checkBoxLayout.appendChild(checkBox);
@@ -228,12 +239,14 @@ export const removeTaskGrids = () => {
     `.main-section > div:nth-child(2) > div:nth-child(2)`
   );
 
-  console.log(viewLayout);
+  //console.log(viewLayout);
 
   while (viewLayout.hasChildNodes()) {
     viewLayout.removeChild(viewLayout.firstChild);
   }
 };
+
+export const updateCheckBoxStorage = (storageName, data) => {};
 
 export const checkIfGridTaskExist = () => {
   const viewLayout = document.querySelector(
@@ -252,7 +265,7 @@ const getGridIndex = (indexNum) => {
   allGrid.forEach((grid, index) => {
     if (grid.getAttribute("data-Index") === indexNum) {
       gridIndex = index;
-      console.log(`match ${index}`);
+      //console.log(`match ${index}`);
     }
   });
 

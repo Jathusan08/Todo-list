@@ -10,7 +10,7 @@ export const taskHandlers = (() => {
     const editEventListener = (task) => {
       if (eventTarget.classList.contains("grid")) {
         const mainSection = document.querySelector(".main-section");
-        console.log("edit Button Clicked");
+        // console.log("edit Button Clicked");
         document.querySelector(
           ".modal > h2"
         ).textContent = `Update Task For ${AddCategtoryTitleOnModal(
@@ -25,14 +25,14 @@ export const taskHandlers = (() => {
 
     const viewEventListener = (task, containerName) => {
       if (eventTarget.classList.contains("grid")) {
-        console.log("Detail Button Clicked");
+        //  console.log("Detail Button Clicked");
         detailViewModal.open(task, containerName);
       }
     };
 
     const deleteEventListener = () => {
       if (eventTarget.classList.contains("grid")) {
-        console.log("Delete Button Clicked");
+        //  console.log("Delete Button Clicked");
         tabModule.deleteTaskInTab(
           Number(eventTarget.getAttribute("data-Index"))
         );
@@ -44,21 +44,23 @@ export const taskHandlers = (() => {
   };
 
   const checkBoxEventListener = (button, task) => {
-    console.log(button.target.parentNode.parentNode.parentNode);
-    console.log(
-      button.target.parentNode.parentNode.parentNode.getAttribute("data-index")
-    );
-    console.log(
-      button.target.parentNode.parentNode.parentNode.getAttribute(
-        "data-project"
-      )
-    );
+    // console.log(button.target.parentNode.parentNode.parentNode);
+    // console.log(
+    //   button.target.parentNode.parentNode.parentNode.getAttribute("data-index")
+    // );
+    // console.log(
+    //   button.target.parentNode.parentNode.parentNode.getAttribute(
+    //     "data-project"
+    //   )
+    // );
     if (button.target.checked) {
       task.completedStatus = true;
-      console.log("Checkbox is checked..");
+      //console.log("Checkbox is checked..");
+      return true;
     } else {
-      console.log("Checkbox is not checked..");
+      //  console.log("Checkbox is not checked..");
       task.completedStatus = false;
+      return false;
     }
   };
 

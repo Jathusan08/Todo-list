@@ -28,13 +28,13 @@ export const popupWindow = (() => {
   let taskIndex = -1;
 
   const open = (data) => {
-    console.log("Modal Open");
+    // console.log("Modal Open");
 
     if (data === null && taskIndex === -1) {
       // when user clicks on add task button so no need to populate the text fields
       clearModalValues();
     } else if (data != null) {
-      console.log("data exist");
+      //  console.log("data exist");
       titleInput.value = data[0].title;
       descriptionInput.value = data[0].description;
       dueDateInput.value = data[0].dueDate;
@@ -54,7 +54,7 @@ export const popupWindow = (() => {
 
   const cancel = () => {
     closeButton.addEventListener("click", () => {
-      console.log("close btn activated");
+      //  console.log("close btn activated");
       close();
     });
   };
@@ -78,8 +78,8 @@ export const popupWindow = (() => {
         );
         task.priority = prioritySelection.value;
         task.note = noteInput.value;
-        console.log(dueDateInput.value);
-        console.log(typeof dueDateInput);
+        // console.log(dueDateInput.value);
+        // console.log(typeof dueDateInput);
         if (taskIndex === -1) {
           // add new task
           tabModule.placeTaskInTab(task);

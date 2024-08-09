@@ -1,4 +1,4 @@
-import { parse, format, isToday } from "date-fns";
+import { parse, format, isToday, add } from "date-fns";
 
 // Function to handle and format the date
 
@@ -18,4 +18,57 @@ export const isTodayDate = (date) => {
   let parsedDate = parse(date, "yyyy-MM-dd", new Date());
 
   return isToday(parsedDate);
+};
+
+export const getWeeklyDate = () => {
+  // Get the current date
+  const today = new Date();
+
+  // Format the date as 'YYYY-MM-DD'
+  const formattedDate = format(today, "yyyy-MM-dd");
+
+  return [
+    format(
+      add(formattedDate, {
+        days: 1,
+      }),
+      "yyyy-MM-dd"
+    ),
+    format(
+      add(formattedDate, {
+        days: 2,
+      }),
+      "yyyy-MM-dd"
+    ),
+    format(
+      add(formattedDate, {
+        days: 3,
+      }),
+      "yyyy-MM-dd"
+    ),
+    format(
+      add(formattedDate, {
+        days: 4,
+      }),
+      "yyyy-MM-dd"
+    ),
+    format(
+      add(formattedDate, {
+        days: 5,
+      }),
+      "yyyy-MM-dd"
+    ),
+    format(
+      add(formattedDate, {
+        days: 6,
+      }),
+      "yyyy-MM-dd"
+    ),
+    format(
+      add(formattedDate, {
+        days: 7,
+      }),
+      "yyyy-MM-dd"
+    ),
+  ];
 };

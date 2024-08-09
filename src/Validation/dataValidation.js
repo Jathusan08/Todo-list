@@ -24,9 +24,9 @@ export const isDateExist = (inputType, errorLabel, errorMessage) => {
   let month = parseInt(dateParts[1]);
   let day = parseInt(dateParts[2]);
 
-  console.log(`${year}, ${month}, ${day}`);
+  //console.log(`${year}, ${month}, ${day}`);
 
-  if (isValid(year, month, day)) {
+  if (isValid(year, month, day) && year <= 9999) {
     errorLabel.textContent = "✓";
     errorLabel.style.color = "green";
     return true;

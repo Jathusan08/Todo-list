@@ -1,7 +1,7 @@
-export const priorityMatchPattern = (matchPattern, task) => {
-  return matchPattern.test(task.priority);
+export const priorityMatchPattern = (matchPattern, taskPriority) => {
+  return matchPattern.test(taskPriority);
 };
 
-export const titleMatchPattern = (matchPattern, task) => {
-  return matchPattern.test(task.title);
+export const titleMatchPattern = (matchPattern, taskTitle) => {
+  return matchPattern.test(taskTitle);
 };

@@ -10,7 +10,7 @@ import { financeModule } from "../Categories/predefinedCategories.js";
 import { socialModule } from "../Categories/predefinedCategories.js";
 import { travelModule } from "../Categories/predefinedCategories.js";
 
-import { isTodayDate } from "../Utils/dateUtil.js";
+import { isTodayDate, getWeeklyDate } from "../Utils/dateUtil.js";
 
 export const getAllTaskData = () => {
   const allData = [];
@@ -105,4 +105,24 @@ export const getTodayTaskData = () => {
   });
 
   return todayData;
+};
+
+export const getWeeklyTaskData = () => {
+  const weeklyData = [];
+
+  getAllTaskData().forEach((project) => {
+    if (
+      project.taskData.dueDate === getWeeklyDate()[0] ||
+      project.taskData.dueDate === getWeeklyDate()[1] ||
+      project.taskData.dueDate === getWeeklyDate()[2] ||
+      project.taskData.dueDate === getWeeklyDate()[3] ||
+      project.taskData.dueDate === getWeeklyDate()[4] ||
+      project.taskData.dueDate === getWeeklyDate()[5] ||
+      project.taskData.dueDate === getWeeklyDate()[6]
+    ) {
+      weeklyData.push(project);
+    }
+  });
+
+  return weeklyData;
 };
