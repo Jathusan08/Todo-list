@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
     "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "prestart": "npx kill-port 4000"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "css-loader": "^7.1.1",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "html-webpack-plugin": "^5.6.0",
+    "kill-port": "^2.0.1",
     "mini-css-extract-plugin": "^2.9.0",
     "style-loader": "^4.0.0",
     "webpack": "^5.91.0",
