@@ -30,21 +30,15 @@ body {
 
 .sidebar {
   width: 100%;
-  /* border-radius: 0 5% 5% 0; */
   height: 100%;
-
   background-color: #131a29;
-
   grid-column: 1 / 2;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  /* justify-content: center; */
   align-items: center;
   padding-bottom: 35px;
   gap: 25px;
-
-  /* overflow-y: auto; Allow vertical scrolling if necessary */
 }
 
 .sidebar > .header {
@@ -86,9 +80,7 @@ body {
 
 hr {
   width: 90%;
-  /* background-color: #4e5563; */
   height: 2px;
-
   border: 1px solid #4e5563;
 }
 
@@ -104,7 +96,6 @@ hr {
   font-size: 1rem;
   cursor: pointer;
   padding-left: 25%;
-  /* gap: 1px; */
 }
 
 .today-layout,
@@ -183,8 +174,6 @@ hr {
 .category-container button {
   width: 100%;
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   align-items: center;
   justify-content: flex-start;
   font-weight: bolder;
@@ -194,7 +183,6 @@ hr {
   font-size: 1rem;
   cursor: pointer;
   padding-left: 25%;
-  /* gap: 1px; */
 }
 
 .personal-btn > .btn-img,
@@ -368,7 +356,6 @@ hr {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  /* height: 5%; */
 }
 
 .controlPanel-Layout > button {
@@ -559,7 +546,6 @@ input:focus {
   overflow: auto;
   scrollbar-color: #4e5563 #4e5563;
   width: 95%;
-
   padding-bottom: 50px;
 }
 
@@ -580,20 +566,6 @@ input:focus {
   overflow: auto;
 }
 
-.has-results {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: 65px;
-  row-gap: 10px;
-}
-
-.has-noResults {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .main-section > div:nth-child(2) > div:nth-child(2) > .grid {
   background-color: #0f1623;
   width: auto;
@@ -609,9 +581,7 @@ input:focus {
 .main-section > div:nth-child(2) > div:nth-child(2) > .grid > .gridLayout {
   width: 100%;
   height: 100%;
-
   display: flex;
-
   gap: 10px;
 }
 
@@ -626,7 +596,6 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: goldenrod; */
 }
 
 .main-section
@@ -635,7 +604,6 @@ input:focus {
   > .grid
   > .gridLayout
   > .taskInfoLayout {
-  /* background-color: violet; */
   height: 100%;
   width: 100%;
   display: flex;
